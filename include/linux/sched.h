@@ -1551,6 +1551,7 @@ struct task_struct {
 	/* Used by LSM modules for access restriction: */
 	void				*security;
 #endif
+
 #ifdef OPLUS_FEATURE_SCHED_ASSIST
 	int ux_state;
 	atomic64_t inherit_ux;
@@ -1600,6 +1601,11 @@ struct task_struct {
 	int dtpdg; /* dynamic tpd task group */
 	int tpd_st; /* affinity decision from im */
 #endif
+
+#ifdef CONFIG_ANDROID_SIMPLE_LMK
+	struct task_struct		*simple_lmk_next;
+#endif
+
 	/* task is frozen/stopped (used by the cgroup freezer) */
 
 	ANDROID_KABI_USE(1, unsigned frozen:1);
